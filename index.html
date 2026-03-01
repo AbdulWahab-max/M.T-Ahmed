@@ -3,213 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MT AHMED & SONS | Industrial Gateway</title>
+    <title>MT AHMED & SONS // BILATERAL SYSTEMS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #080808; --panel: #111111; --accent: #F97316; --border: #1F1F1F; }
-        body { background-color: var(--bg); color: #EAEAEA; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        :root { --orange: #FF5F1F; --slate: #1A1C1E; --bg: #0D0E10; }
+        body { background-color: var(--bg); color: #E2E8F0; font-family: 'Inter', sans-serif; }
         .mono { font-family: 'JetBrains Mono', monospace; }
-        .border-tech { border: 1px solid var(--border); }
-        .grid-bg { background-image: radial-gradient(#1f1f1f 1px, transparent 1px); background-size: 30px 30px; }
+        .border-utility { border: 1px solid #2D3139; }
+        .bg-panel { background-color: var(--slate); }
         [x-cloak] { display: none !important; }
         
-        .radar-pulse { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; position: relative; }
-        .radar-pulse::after {
-            content: ''; position: absolute; top: -110%; left: -110%; width: 320%; height: 320%;
-            border: 1px solid var(--accent); border-radius: 50%; animation: pulse 2s infinite;
+        /* Gorpcore Industrial Aesthetic */
+        .scan-line {
+            width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--orange), transparent);
+            position: absolute; top: 0; animation: scan 4s infinite linear;
         }
-        @keyframes pulse { 0% { transform: scale(0.5); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+        @keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }
     </style>
 </head>
-<body class="grid-bg min-h-screen" x-data="{ page: 'home', search: '' }">
+<body x-data="{ section: 'bridge', buildStep: 1 }">
 
-    <!-- SYSTEM NAVIGATION -->
-    <nav class="fixed top-0 w-full z-50 border-b border-tech bg-black/90 backdrop-blur-xl">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center gap-6">
-                <div @click="page = 'home'" class="cursor-pointer group">
-                    <h1 class="mono font-bold text-sm tracking-tighter uppercase group-hover:text-orange-500 transition-colors">MT AHMED & SONS <span class="text-orange-500">//</span> PK-ES</h1>
-                </div>
-                <div class="hidden lg:flex gap-6 ml-12">
-                    <button @click="page = 'about'" :class="page === 'about' ? 'text-orange-500' : 'text-zinc-500'" class="mono text-[10px] uppercase tracking-widest hover:text-orange-500 transition-all">Liaison Model</button>
-                    <button @click="page = 'kb'" :class="page === 'kb' ? 'text-orange-500' : 'text-zinc-500'" class="mono text-[10px] uppercase tracking-widest hover:text-orange-500 transition-all">Substrate Index</button>
-                    <button @click="page = 'portal'" :class="page === 'portal' ? 'text-orange-500' : 'text-zinc-500'" class="mono text-[10px] uppercase tracking-widest hover:text-orange-500 transition-all">Production Ledger</button>
-                </div>
+    <!-- TOP NAVIGATION: SYSTEM STATUS -->
+    <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-utility">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <span class="bg-orange-600 text-black px-2 py-0.5 font-bold mono text-[10px]">MT-A v2026</span>
+                <h1 class="mono text-xs font-bold tracking-widest uppercase">Bilateral Manufacturing Interface</h1>
             </div>
-            <button @click="page = 'contact'" class="mono text-[10px] bg-orange-600 text-black font-bold px-5 py-2.5 uppercase hover:bg-white transition-all">Inquiry_Lab</button>
+            <div class="flex gap-8 mono text-[10px] uppercase text-slate-500">
+                <button @click="section = 'bridge'" :class="section === 'bridge' && 'text-orange-500'">Liaison Bridge</button>
+                <button @click="section = 'substrates'" :class="section === 'substrates' && 'text-orange-500'">Substrates</button>
+                <button @click="section = 'build'" class="bg-orange-600 text-black px-4 py-2 hover:bg-white transition-all">Start Build_</button>
+            </div>
         </div>
     </nav>
 
-    <!-- CONTENT WRAPPER -->
-    <div class="max-w-7xl mx-auto px-6 pt-32 pb-20">
+    <main class="max-w-7xl mx-auto px-6 pt-32 pb-20">
 
-        <!-- 01: HOME PAGE -->
-        <section x-show="page === 'home'" x-cloak x-transition.opacity.duration.500ms>
-            <div class="py-20">
-                <span class="mono text-orange-500 text-xs tracking-[0.5em] uppercase mb-6 block">Systemic Apparel Manufacturing</span>
-                <h2 class="text-6xl md:text-8xl font-bold tracking-tighter uppercase leading-[0.9] mb-10">Production <br><span class="text-zinc-800 italic">as a</span> Service.</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-                    <p class="text-zinc-400 text-lg leading-relaxed">Industrial-grade technical wear for independent European labels. We provide a 50-unit entry point with professional Milan-standard quality control.</p>
-                    <div class="border-tech p-8 bg-zinc-900/30">
-                        <p class="mono text-[10px] text-orange-500 uppercase mb-4 tracking-widest">Active System Nodes</p>
-                        <div class="space-y-3">
-                            <div class="flex justify-between mono text-xs"><span class="text-zinc-500">SIALKOT_ENG</span><span class="text-green-500">ONLINE</span></div>
-                            <div class="flex justify-between mono text-xs"><span class="text-zinc-500">MILAN_QC_HUB</span><span class="text-green-500">ONLINE</span></div>
-                            <div class="flex justify-between mono text-xs"><span class="text-zinc-500">LOGISTICS_ES</span><span class="text-green-500">ACTIVE</span></div>
+        <!-- SECTION: THE BRIDGE (The Business Logic) -->
+        <section x-show="section === 'bridge'" x-cloak>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-5">
+                    <h2 class="text-5xl font-bold uppercase italic tracking-tighter mb-8 leading-none">Global <br>Accountability.</h2>
+                    <p class="text-slate-400 mb-8 leading-relaxed">Most Sialkot factories fail European brands due to communication lag and quality drift. We solved this by installing a **Bilateral Firewall**.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="p-6 border-utility bg-panel relative overflow-hidden">
+                            <div class="scan-line opacity-20"></div>
+                            <h4 class="mono text-orange-500 text-xs font-bold mb-2">MILAN / SPAIN HUB</h4>
+                            <p class="text-xs text-slate-300 italic">Legal accountability, tech-pack translation, final QC audit, and EU logistics.</p>
+                        </div>
+                        <div class="p-6 border-utility bg-panel">
+                            <h4 class="mono text-slate-500 text-xs font-bold mb-2">SIALKOT ENGINEERING</h4>
+                            <p class="text-xs text-slate-300 italic">Heavyweight knitting, complex assembly, high-density stitching, and bulk production.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 border-utility bg-panel p-8 relative min-h-[400px] flex items-center justify-center">
+                    <!-- Visual representation of the Bridge -->
+                    <div class="w-full space-y-4">
+                        <div class="flex justify-between items-center px-10">
+                            <div class="w-16 h-16 border border-orange-500 flex items-center justify-center mono text-orange-500 text-[10px] font-bold">MILAN</div>
+                            <div class="flex-grow h-px bg-slate-700 mx-4 relative">
+                                <div class="absolute -top-2 left-1/2 transform -translate-x-1/2 bg-orange-600 text-[8px] px-2 py-0.5 text-black font-bold">QC TUNNEL</div>
+                            </div>
+                            <div class="w-16 h-16 border border-slate-700 flex items-center justify-center mono text-slate-500 text-[10px] font-bold">SIALKOT</div>
+                        </div>
+                        <div class="text-center mt-12">
+                            <p class="mono text-[10px] text-slate-500 uppercase tracking-widest">Trust verified by AQL 1.5 standards</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 02: ABOUT / LIAISON PAGE -->
-        <section x-show="page === 'about'" x-cloak x-transition.opacity.duration.500ms>
-            <div class="space-y-16">
-                <div>
-                    <h3 class="mono text-orange-500 text-xs font-bold uppercase tracking-widest mb-4 italic underline underline-offset-8 decoration-1">Liaison Model // Trust Protocol</h3>
-                    <h2 class="text-4xl font-bold uppercase tracking-tighter">Bilateral Responsibility</h2>
+        <!-- SECTION: SUBSTRATES (The Fabric Engineering) -->
+        <section x-show="section === 'substrates'" x-cloak>
+            <div class="mb-12 border-b border-utility pb-6 flex justify-between items-end">
+                <h2 class="mono text-xl font-bold uppercase">Substrate Index_01</h2>
+                <span class="mono text-[10px] text-slate-500">Total Variations: 128</span>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Substrate Card -->
+                <template x-for="i in ['Heavy Loopback', 'Compact Dry Jersey', 'Utility Canvas']">
+                    <div class="border-utility p-6 bg-panel hover:border-orange-500 transition-all group">
+                        <div class="flex justify-between items-start mb-8">
+                            <span class="mono text-[10px] text-slate-500 uppercase">Code: MTA-500</span>
+                            <span class="text-orange-500">●</span>
+                        </div>
+                        <h3 x-text="i" class="text-xl font-bold uppercase mb-2 italic"></h3>
+                        <p class="mono text-[10px] text-slate-500 mb-6 uppercase tracking-tighter">500 GSM // 100% Organic Cotton</p>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="border-utility p-2 text-center mono text-[8px] uppercase">Pilling: Grade 4.5</div>
+                            <div class="border-utility p-2 text-center mono text-[8px] uppercase">Shrink: &lt;2%</div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+        <!-- SECTION: START BUILD (The Business Tool) -->
+        <section x-show="section === 'build'" x-cloak class="max-w-3xl mx-auto">
+            <div class="border-utility bg-panel p-10">
+                <div class="flex items-center gap-4 mb-10">
+                    <template x-for="step in [1, 2, 3]">
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 rounded-full border border-utility flex items-center justify-center mono text-[10px]"
+                                 :class="buildStep >= step ? 'bg-orange-600 text-black border-orange-600' : 'text-slate-500'">
+                                <span x-text="step"></span>
+                            </div>
+                            <div x-show="step < 3" class="w-12 h-px bg-slate-800"></div>
+                        </div>
+                    </template>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-zinc-800 border border-zinc-800">
-                    <div class="bg-black p-10">
-                        <h4 class="mono text-orange-500 text-xs uppercase mb-6 font-bold tracking-widest">Node 01: Sialkot (PK)</h4>
-                        <p class="text-xl font-bold mb-4 uppercase">Industrial Engineering</p>
-                        <ul class="mono text-xs space-y-3 text-zinc-500 uppercase">
-                            <li>> High-Density Knitting (300-600GSM)</li>
-                            <li>> Technical Pattern Construction</li>
-                            <li>> Bulk Assembly (ISO 4915)</li>
-                            <li>> Primary Physical Testing</li>
-                        </ul>
+
+                <!-- Step 1: Specs -->
+                <div x-show="buildStep === 1" class="space-y-6">
+                    <h3 class="mono text-sm font-bold uppercase text-orange-500">01_Technical Specifications</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="mono text-[10px] uppercase text-slate-500 block mb-2">Category</label>
+                            <select class="w-full bg-black border border-utility p-3 mono text-xs uppercase focus:border-orange-500 outline-none">
+                                <option>Heavyweight Hoodie</option>
+                                <option>Utility Cargo Jogger</option>
+                                <option>Boxy Tee</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="mono text-[10px] uppercase text-slate-500 block mb-2">Initial Quantity (MOQ 50+)</label>
+                            <input type="number" placeholder="50" class="w-full bg-black border border-utility p-3 mono text-xs focus:border-orange-500 outline-none">
+                        </div>
                     </div>
-                    <div class="bg-black p-10 border-l border-zinc-800">
-                        <h4 class="mono text-orange-500 text-xs uppercase mb-6 font-bold tracking-widest">Node 02: Milan/ES Hub</h4>
-                        <p class="text-xl font-bold mb-4 uppercase">Quality Gatekeeping</p>
-                        <ul class="mono text-xs space-y-3 text-zinc-500 uppercase">
-                            <li>> Trend & Tech-Pack Alignment</li>
-                            <li>> Secondary QC Audit (AQL 1.5)</li>
-                            <li>> EU Financial Compliance</li>
-                            <li>> Last-Mile Logistics</li>
-                        </ul>
+                    <button @click="buildStep = 2" class="w-full bg-white text-black font-bold py-4 mono text-xs uppercase hover:bg-orange-600 transition-all">Proceed to Materials_</button>
+                </div>
+
+                <!-- Step 2: Fabrication -->
+                <div x-show="buildStep === 2" class="space-y-6">
+                    <h3 class="mono text-sm font-bold uppercase text-orange-500">02_Fabrication Matrix</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-4 border border-orange-500 bg-orange-500/5 cursor-pointer">
+                            <p class="mono text-[10px] font-bold">MTA-500 French Terry</p>
+                            <p class="text-[9px] text-slate-500 mt-2 italic">Optimized for Gorpcore-lite silhouettes.</p>
+                        </div>
+                        <div class="p-4 border border-utility hover:border-slate-500 cursor-pointer">
+                            <p class="mono text-[10px] font-bold text-slate-500">MTA-300 Compact Jersey</p>
+                            <p class="text-[9px] text-slate-700 mt-2 italic">For high-density layering pieces.</p>
+                        </div>
                     </div>
+                    <div class="flex gap-4">
+                        <button @click="buildStep = 1" class="w-1/3 border border-utility py-4 mono text-xs uppercase">Back</button>
+                        <button @click="buildStep = 3" class="w-2/3 bg-white text-black font-bold py-4 mono text-xs uppercase hover:bg-orange-600 transition-all">Verify & Submit_</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Confirmation -->
+                <div x-show="buildStep === 3" class="text-center py-10 space-y-6">
+                    <div class="w-16 h-16 border-2 border-green-500 rounded-full mx-auto flex items-center justify-center">
+                        <span class="text-green-500 text-2xl">✓</span>
+                    </div>
+                    <h3 class="mono text-xl font-bold uppercase">Build Request Ready</h3>
+                    <p class="text-xs text-slate-400 max-w-sm mx-auto">Your configuration will be reviewed by our Milan Technical Hub. You will receive a technical quote within 24 operational hours.</p>
+                    <button @click="buildStep = 1; section = 'bridge'" class="bg-orange-600 text-black px-8 py-4 mono text-xs font-bold uppercase">Return to System Hub</button>
                 </div>
             </div>
         </section>
 
-        <!-- 03: KNOWLEDGE BASE -->
-        <section x-show="page === 'kb'" x-cloak x-transition.opacity.duration.500ms>
-            <div class="space-y-8">
-                <div class="flex justify-between items-end border-b border-zinc-800 pb-8">
-                    <h3 class="mono text-xs text-orange-500 font-bold uppercase tracking-widest italic">Substrate Library v4.2</h3>
-                    <input type="text" placeholder="SEARCH_CODE..." class="bg-zinc-900 border border-zinc-800 mono text-[10px] px-4 py-2 w-64 focus:border-orange-500 outline-none">
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full mono text-[11px] text-left border-collapse">
-                        <thead>
-                            <tr class="text-zinc-600 uppercase border-b border-zinc-800">
-                                <th class="py-4 px-2 italic">Fabric_ID</th>
-                                <th class="py-4 px-2 italic">GSM</th>
-                                <th class="py-4 px-2 italic">Composition</th>
-                                <th class="py-4 px-2 italic">Pilling_ISO</th>
-                                <th class="py-4 px-2 italic">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-zinc-900">
-                            <tr class="hover:bg-zinc-900/50 transition-colors">
-                                <td class="py-6 px-2 font-bold tracking-tighter">FT-520-BLACK</td>
-                                <td class="py-6 px-2">520 GSM</td>
-                                <td class="py-6 px-2 uppercase">100% Organic Loopback</td>
-                                <td class="py-6 px-2 text-orange-500">GRADE 4.5</td>
-                                <td class="py-6 px-2 text-green-500">[AVAILABLE]</td>
-                            </tr>
-                            <tr class="hover:bg-zinc-900/50 transition-colors">
-                                <td class="py-6 px-2 font-bold tracking-tighter">CJ-300-SLATE</td>
-                                <td class="py-6 px-2">300 GSM</td>
-                                <td class="py-6 px-2 uppercase">Compact Dry-Hand Jersey</td>
-                                <td class="py-6 px-2 text-orange-500">GRADE 4.0</td>
-                                <td class="py-6 px-2 text-green-500">[AVAILABLE]</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
+    </main>
 
-        <!-- 04: CLIENT PORTAL -->
-        <section x-show="page === 'portal'" x-cloak x-transition.opacity.duration.500ms>
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-                <div class="lg:col-span-8 space-y-10">
-                    <div class="bg-zinc-900/20 border border-zinc-800 p-8 relative overflow-hidden">
-                        <div class="absolute top-4 right-6 flex items-center gap-2">
-                            <span class="radar-pulse"></span>
-                            <span class="mono text-[10px] text-orange-500 font-bold uppercase tracking-widest">Live_Audit</span>
-                        </div>
-                        <h4 class="mono text-[10px] text-zinc-500 uppercase mb-2">Order Tracking: #8821</h4>
-                        <p class="text-3xl font-bold uppercase italic tracking-tighter mb-12 underline decoration-orange-500 underline-offset-8">Utility Hoodie v1.2</p>
-                        
-                        <!-- PROGRESS TRACKER -->
-                        <div class="grid grid-cols-4 gap-2 mb-8">
-                            <div class="h-1.5 bg-zinc-600"></div>
-                            <div class="h-1.5 bg-zinc-600"></div>
-                            <div class="h-1.5 bg-orange-500 animate-pulse"></div>
-                            <div class="h-1.5 bg-zinc-900"></div>
-                        </div>
-                        <div class="grid grid-cols-4 mono text-[9px] text-zinc-600 uppercase tracking-widest">
-                            <span>Yarn_Dye</span>
-                            <span>Assembled</span>
-                            <span class="text-orange-500 font-bold italic">Milan_QC</span>
-                            <span>Dispatch</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="lg:col-span-4 space-y-6">
-                    <div class="border-tech p-6 bg-zinc-900/30">
-                        <h4 class="mono text-[10px] text-zinc-500 uppercase mb-4 tracking-widest">Documentation</h4>
-                        <div class="space-y-3">
-                            <button class="w-full border border-zinc-800 p-3 mono text-[10px] text-left hover:border-orange-500 transition-all uppercase">>> TP_Hoodie_v1.2.pdf</button>
-                            <button class="w-full border border-zinc-800 p-3 mono text-[10px] text-left hover:border-orange-500 transition-all uppercase">>> Fabric_Test_Report.pdf</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 05: CONTACT / LAB PAGE -->
-        <section x-show="page === 'contact'" x-cloak x-transition.opacity.duration.500ms>
-            <div class="max-w-2xl mx-auto space-y-12">
-                <div class="text-center">
-                    <h2 class="text-4xl font-bold italic uppercase tracking-tighter mb-4">Initialize Technical Partnership</h2>
-                    <p class="mono text-[10px] text-zinc-500 uppercase tracking-widest underline decoration-orange-500 underline-offset-8">Request Fabric Swatch Kit or Tech Review</p>
-                </div>
-                <form class="space-y-6 border-tech p-10 bg-zinc-900/10">
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="space-y-2">
-                            <label class="mono text-[10px] text-zinc-500 uppercase">Brand Name</label>
-                            <input type="text" class="w-full bg-zinc-950 border border-zinc-800 p-3 mono text-xs focus:border-orange-500 outline-none">
-                        </div>
-                        <div class="space-y-2">
-                            <label class="mono text-[10px] text-zinc-500 uppercase">Region (EU/UK)</label>
-                            <input type="text" class="w-full bg-zinc-950 border border-zinc-800 p-3 mono text-xs focus:border-orange-500 outline-none">
-                        </div>
-                    </div>
-                    <div class="space-y-2">
-                        <label class="mono text-[10px] text-zinc-500 uppercase">Technical Inquiry Details</label>
-                        <textarea rows="4" class="w-full bg-zinc-950 border border-zinc-800 p-3 mono text-xs focus:border-orange-500 outline-none"></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-orange-600 text-black font-bold py-4 mono text-xs uppercase hover:bg-white transition-all tracking-widest">Transmit Inquiry Node</button>
-                </form>
-            </div>
-        </section>
-
-    </div>
-
-    <!-- SYSTEM FOOTER -->
-    <footer class="border-t border-tech py-12 px-6 bg-black/50">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10 mono text-[10px] text-zinc-600 uppercase tracking-[0.2em]">
-            <p>© 2026 MT AHMED & SONS // SIALKOT // MILAN // BARCELONA</p>
-            <div class="flex gap-8">
-                <span>LATENCY: 14MS</span>
-                <span>ENC: SSL_256</span>
+    <footer class="border-t border-utility py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 mono text-[10px] text-slate-600 uppercase">
+            <p>© 2026 MT AHMED & SONS // SIALKOT ENGINEERING // EU LIAISON</p>
+            <div class="flex gap-6 italic">
+                <span>LATENCY: 12ms</span>
+                <span>ENC: RSA-4096</span>
             </div>
         </div>
     </footer>
