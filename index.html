@@ -3,226 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MT AHMED & SONS | Technical Manufacturing System</title>
+    <title>MT AHMED & SONS | Industrial Gateway</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #080808;
-            --panel: #111111;
-            --accent: #F97316;
-            --border: #1F1F1F;
-        }
-        body { background-color: var(--bg); color: #EAEAEA; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        :root { --bg: #080808; --panel: #111111; --accent: #F97316; --border: #1F1F1F; }
+        body { background-color: var(--bg); color: #EAEAEA; font-family: 'Inter', sans-serif; overflow-x: hidden; }
         .mono { font-family: 'JetBrains Mono', monospace; }
         .border-tech { border: 1px solid var(--border); }
+        .grid-bg { background-image: radial-gradient(#1f1f1f 1px, transparent 1px); background-size: 30px 30px; }
+        [x-cloak] { display: none !important; }
         
-        /* Animations */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        
-        .radar-pulse {
-            width: 8px; height: 8px; background: var(--accent); border-radius: 50%; position: relative;
-        }
+        .radar-pulse { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; position: relative; }
         .radar-pulse::after {
             content: ''; position: absolute; top: -110%; left: -110%; width: 320%; height: 320%;
             border: 1px solid var(--accent); border-radius: 50%; animation: pulse 2s infinite;
         }
         @keyframes pulse { 0% { transform: scale(0.5); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
-
-        .grid-bg { background-image: radial-gradient(#1f1f1f 1px, transparent 1px); background-size: 40px 40px; }
-        
-        .nav-link { font-size: 10px; font-family: 'JetBrains Mono'; text-transform: uppercase; letter-spacing: 0.2em; color: #666; transition: color 0.3s; }
-        .nav-link:hover { color: var(--accent); }
     </style>
 </head>
-<body class="grid-bg">
+<body class="grid-bg min-h-screen" x-data="{ page: 'home', search: '' }">
 
-    <!-- NAVIGATION -->
-    <nav class="fixed top-0 w-full z-50 border-b border-tech bg-black/80 backdrop-blur-xl">
+    <!-- SYSTEM NAVIGATION -->
+    <nav class="fixed top-0 w-full z-50 border-b border-tech bg-black/90 backdrop-blur-xl">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
             <div class="flex items-center gap-6">
-                <h1 class="mono font-bold text-sm tracking-tighter uppercase">MT AHMED & SONS <span class="text-orange-500">//</span> PK-ES</h1>
-                <div class="hidden lg:flex gap-8 ml-12">
-                    <a href="#substrate" class="nav-link">Substrate Index</a>
-                    <a href="#liaison" class="nav-link">Liaison Bridge</a>
-                    <a href="#components" class="nav-link">Components</a>
-                    <a href="#portal" class="nav-link text-orange-500 font-bold">Client Portal</a>
+                <div @click="page = 'home'" class="cursor-pointer group">
+                    <h1 class="mono font-bold text-sm tracking-tighter uppercase group-hover:text-orange-500 transition-colors">MT AHMED & SONS <span class="text-orange-500">//</span> PK-ES</h1>
+                </div>
+                <div class="hidden lg:flex gap-6 ml-12">
+                    <button @click="page = 'about'" :class="page === 'about' ? 'text-orange-500' : 'text-zinc-500'" class="mono text-[10px] uppercase tracking-widest hover:text-orange-500 transition-all">Liaison Model</button>
+                    <button @click="page = 'kb'" :class="page === 'kb' ? 'text-orange-500' : 'text-zinc-500'" class="mono text-[10px] uppercase tracking-widest hover:text-orange-500 transition-all">Substrate Index</button>
+                    <button @click="page = 'portal'" :class="page === 'portal' ? 'text-orange-500' : 'text-zinc-500'" class="mono text-[10px] uppercase tracking-widest hover:text-orange-500 transition-all">Production Ledger</button>
                 </div>
             </div>
-            <button class="mono text-[10px] bg-orange-600 text-black font-bold px-6 py-3 uppercase hover:bg-white transition-all">Initiate Protocol</button>
+            <button @click="page = 'contact'" class="mono text-[10px] bg-orange-600 text-black font-bold px-5 py-2.5 uppercase hover:bg-white transition-all">Inquiry_Lab</button>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-6">
-        
-        <!-- HERO SECTION -->
-        <section class="min-h-screen flex flex-col justify-center pt-20">
-            <div class="reveal">
-                <span class="mono text-orange-500 text-xs tracking-[0.5em] uppercase mb-4 block">Systemic Apparel Manufacturing</span>
-                <h2 class="text-6xl md:text-8xl font-bold tracking-tighter uppercase leading-[0.9] mb-8">
-                    Production <br><span class="text-zinc-700 italic">as a</span> Service.
-                </h2>
-                <p class="max-w-xl text-zinc-400 text-lg leading-relaxed mb-10">
-                    Sialkot-based heavy-wear engineering overseen by our European technical office. We solve the trust gap for independent brands through 50-unit MOQs and real-time QC auditing.
-                </p>
-                <div class="flex gap-4">
-                    <div class="border-tech p-6 bg-zinc-900/50 backdrop-blur">
-                        <p class="mono text-[10px] text-zinc-500 uppercase mb-2">Office A</p>
-                        <p class="mono text-sm font-bold tracking-tight">SIALKOT, PK</p>
-                    </div>
-                    <div class="border-tech p-6 bg-zinc-900/50 backdrop-blur border-orange-900/50">
-                        <p class="mono text-[10px] text-orange-500 uppercase mb-2">Liaison Hub</p>
-                        <p class="mono text-sm font-bold tracking-tight">BARCELONA, ES</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- CONTENT WRAPPER -->
+    <div class="max-w-7xl mx-auto px-6 pt-32 pb-20">
 
-        <!-- THE SUBSTRATE INDEX (FABRIC LIBRARY) -->
-        <section id="substrate" class="py-32 border-t border-tech">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                <div class="lg:col-span-4 reveal">
-                    <h3 class="mono text-xs text-orange-500 font-bold uppercase tracking-widest mb-6">01. Substrate Index</h3>
-                    <p class="text-2xl font-bold mb-4">Material First Engineering.</p>
-                    <p class="text-zinc-500 text-sm leading-relaxed">Our library consists of high-density cotton variations optimized for Gorpcore-lite silhouettes. All substrates are pre-tested for shrinkage and pilling.</p>
-                </div>
-                <div class="lg:col-span-8 reveal">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-zinc-800 border border-zinc-800">
-                        <!-- Fabric Item -->
-                        <div class="bg-black p-8 hover:bg-zinc-900 transition-colors">
-                            <div class="flex justify-between items-start mb-12">
-                                <span class="mono text-[10px] bg-zinc-800 px-2 py-1 uppercase">Ref. FT-520</span>
-                                <span class="text-zinc-600 mono text-[10px]">v4.0</span>
-                            </div>
-                            <h4 class="text-xl font-bold mb-2 uppercase">Heavy Loopback</h4>
-                            <p class="mono text-[10px] text-zinc-500 mb-6">520 GSM // 100% Organic Cotton</p>
-                            <div class="h-1 w-full bg-zinc-900 mb-2">
-                                <div class="h-full bg-orange-500 w-[98%]"></div>
-                            </div>
-                            <p class="mono text-[9px] uppercase text-zinc-600 tracking-tighter">Durability Rating: 9.8/10</p>
-                        </div>
-                        <!-- Fabric Item -->
-                        <div class="bg-black p-8 hover:bg-zinc-900 transition-colors">
-                            <div class="flex justify-between items-start mb-12">
-                                <span class="mono text-[10px] bg-zinc-800 px-2 py-1 uppercase">Ref. CJ-300</span>
-                                <span class="text-zinc-600 mono text-[10px]">v2.1</span>
-                            </div>
-                            <h4 class="text-xl font-bold mb-2 uppercase">Compact Jersey</h4>
-                            <p class="mono text-[10px] text-zinc-500 mb-6">300 GSM // Dry-Hand Finish</p>
-                            <div class="h-1 w-full bg-zinc-900 mb-2">
-                                <div class="h-full bg-zinc-500 w-[92%]"></div>
-                            </div>
-                            <p class="mono text-[9px] uppercase text-zinc-600 tracking-tighter">Durability Rating: 9.2/10</p>
+        <!-- 01: HOME PAGE -->
+        <section x-show="page === 'home'" x-cloak x-transition.opacity.duration.500ms>
+            <div class="py-20">
+                <span class="mono text-orange-500 text-xs tracking-[0.5em] uppercase mb-6 block">Systemic Apparel Manufacturing</span>
+                <h2 class="text-6xl md:text-8xl font-bold tracking-tighter uppercase leading-[0.9] mb-10">Production <br><span class="text-zinc-800 italic">as a</span> Service.</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                    <p class="text-zinc-400 text-lg leading-relaxed">Industrial-grade technical wear for independent European labels. We provide a 50-unit entry point with professional Milan-standard quality control.</p>
+                    <div class="border-tech p-8 bg-zinc-900/30">
+                        <p class="mono text-[10px] text-orange-500 uppercase mb-4 tracking-widest">Active System Nodes</p>
+                        <div class="space-y-3">
+                            <div class="flex justify-between mono text-xs"><span class="text-zinc-500">SIALKOT_ENG</span><span class="text-green-500">ONLINE</span></div>
+                            <div class="flex justify-between mono text-xs"><span class="text-zinc-500">MILAN_QC_HUB</span><span class="text-green-500">ONLINE</span></div>
+                            <div class="flex justify-between mono text-xs"><span class="text-zinc-500">LOGISTICS_ES</span><span class="text-green-500">ACTIVE</span></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- THE LIAISON BRIDGE -->
-        <section id="liaison" class="py-32 border-t border-tech">
-            <div class="reveal mb-16">
-                <h3 class="mono text-xs text-orange-500 font-bold uppercase tracking-widest mb-6">02. Liaison Bridge</h3>
-                <p class="text-4xl font-bold uppercase italic tracking-tighter">Global Accountability Model</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal">
-                <div class="p-10 border-tech bg-zinc-900/20">
-                    <span class="mono text-4xl text-zinc-800 font-bold mb-8 block">01</span>
-                    <h4 class="text-lg font-bold mb-4 uppercase">Tech-Pack Review</h4>
-                    <p class="text-sm text-zinc-500 leading-relaxed mono uppercase">Location: Barcelona</p>
-                    <p class="text-sm text-zinc-400 mt-4 leading-relaxed italic">The Spain office aligns your design with Sialkot’s technical capabilities, ensuring zero data loss during prototyping.</p>
+        <!-- 02: ABOUT / LIAISON PAGE -->
+        <section x-show="page === 'about'" x-cloak x-transition.opacity.duration.500ms>
+            <div class="space-y-16">
+                <div>
+                    <h3 class="mono text-orange-500 text-xs font-bold uppercase tracking-widest mb-4 italic underline underline-offset-8 decoration-1">Liaison Model // Trust Protocol</h3>
+                    <h2 class="text-4xl font-bold uppercase tracking-tighter">Bilateral Responsibility</h2>
                 </div>
-                <div class="p-10 border-tech bg-zinc-900/20">
-                    <span class="mono text-4xl text-zinc-800 font-bold mb-8 block">02</span>
-                    <h4 class="text-lg font-bold mb-4 uppercase">Bulk Engineering</h4>
-                    <p class="text-sm text-zinc-500 leading-relaxed mono uppercase">Location: Sialkot</p>
-                    <p class="text-sm text-zinc-400 mt-4 leading-relaxed italic">Mass production using high-density knitting machines and specialized heavy-wear stitch protocols (ISO 4915).</p>
-                </div>
-                <div class="p-10 border-tech bg-orange-900/10 border-orange-500/20">
-                    <span class="mono text-4xl text-orange-900/40 font-bold mb-8 block">03</span>
-                    <h4 class="text-lg font-bold mb-4 uppercase text-orange-500">Final Gatekeeping</h4>
-                    <p class="text-sm text-orange-500/50 leading-relaxed mono uppercase">Location: Barcelona</p>
-                    <p class="text-sm text-zinc-400 mt-4 leading-relaxed italic">Goods are received in Spain for 100% final inspection before being dispatched to your EU warehouse.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- CLIENT PORTAL PREVIEW -->
-        <section id="portal" class="py-32 border-t border-tech">
-            <div class="bg-zinc-950 border border-orange-900/30 p-12 reveal overflow-hidden relative">
-                <div class="absolute top-0 right-0 p-8">
-                    <div class="radar-pulse"></div>
-                </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                    <div>
-                        <h3 class="mono text-xs text-orange-500 font-bold uppercase tracking-widest mb-8">03. Client Ledger</h3>
-                        <p class="text-3xl font-bold mb-6 italic uppercase tracking-tighter leading-none">Real-time <br> Batch Transparency.</p>
-                        <p class="text-zinc-500 text-sm mb-8">Every brand partner receives access to a private Production Ledger. Track your batch from yarn-dyeing in Sialkot to final QC sign-off in Spain.</p>
-                        <button class="mono text-[10px] border border-zinc-700 px-8 py-4 hover:bg-white hover:text-black transition-all">Request Access Credentials</button>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-zinc-800 border border-zinc-800">
+                    <div class="bg-black p-10">
+                        <h4 class="mono text-orange-500 text-xs uppercase mb-6 font-bold tracking-widest">Node 01: Sialkot (PK)</h4>
+                        <p class="text-xl font-bold mb-4 uppercase">Industrial Engineering</p>
+                        <ul class="mono text-xs space-y-3 text-zinc-500 uppercase">
+                            <li>> High-Density Knitting (300-600GSM)</li>
+                            <li>> Technical Pattern Construction</li>
+                            <li>> Bulk Assembly (ISO 4915)</li>
+                            <li>> Primary Physical Testing</li>
+                        </ul>
                     </div>
-                    <div class="bg-black border border-tech p-8 space-y-8">
-                        <div class="flex justify-between items-center border-b border-zinc-800 pb-4">
-                            <p class="mono text-[10px] text-zinc-500">BATCH_ID: #MTA-8821</p>
-                            <p class="mono text-[10px] text-orange-500">STATUS: AUDIT_ES</p>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-center text-[11px] mono">
-                                <span>KNITTING_SIALKOT</span>
-                                <span class="text-green-500 underline uppercase">Completed</span>
-                            </div>
-                            <div class="flex justify-between items-center text-[11px] mono">
-                                <span>STITCHING_SIALKOT</span>
-                                <span class="text-green-500 underline uppercase">Completed</span>
-                            </div>
-                            <div class="flex justify-between items-center text-[11px] mono">
-                                <span class="text-orange-500 font-bold tracking-widest">QC_BARCELONA</span>
-                                <span class="text-orange-500 animate-pulse uppercase">Active_Audit</span>
-                            </div>
-                        </div>
-                        <div class="pt-8">
-                            <div class="h-1 w-full bg-zinc-900 overflow-hidden">
-                                <div class="h-full bg-orange-600 w-[75%]"></div>
-                            </div>
-                        </div>
+                    <div class="bg-black p-10 border-l border-zinc-800">
+                        <h4 class="mono text-orange-500 text-xs uppercase mb-6 font-bold tracking-widest">Node 02: Milan/ES Hub</h4>
+                        <p class="text-xl font-bold mb-4 uppercase">Quality Gatekeeping</p>
+                        <ul class="mono text-xs space-y-3 text-zinc-500 uppercase">
+                            <li>> Trend & Tech-Pack Alignment</li>
+                            <li>> Secondary QC Audit (AQL 1.5)</li>
+                            <li>> EU Financial Compliance</li>
+                            <li>> Last-Mile Logistics</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="py-20 border-t border-tech mt-20">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-12 text-zinc-600 mono text-[10px] uppercase tracking-widest">
-            <div class="text-center md:text-left">
-                <p class="text-zinc-400 font-bold mb-2">MT Ahmed & Sons Systems v1.0</p>
-                <p>PK Office: Small Industries Estate, Sialkot</p>
-                <p>ES Office: Carrer de la Diputació, Barcelona</p>
+        <!-- 03: KNOWLEDGE BASE -->
+        <section x-show="page === 'kb'" x-cloak x-transition.opacity.duration.500ms>
+            <div class="space-y-8">
+                <div class="flex justify-between items-end border-b border-zinc-800 pb-8">
+                    <h3 class="mono text-xs text-orange-500 font-bold uppercase tracking-widest italic">Substrate Library v4.2</h3>
+                    <input type="text" placeholder="SEARCH_CODE..." class="bg-zinc-900 border border-zinc-800 mono text-[10px] px-4 py-2 w-64 focus:border-orange-500 outline-none">
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full mono text-[11px] text-left border-collapse">
+                        <thead>
+                            <tr class="text-zinc-600 uppercase border-b border-zinc-800">
+                                <th class="py-4 px-2 italic">Fabric_ID</th>
+                                <th class="py-4 px-2 italic">GSM</th>
+                                <th class="py-4 px-2 italic">Composition</th>
+                                <th class="py-4 px-2 italic">Pilling_ISO</th>
+                                <th class="py-4 px-2 italic">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-zinc-900">
+                            <tr class="hover:bg-zinc-900/50 transition-colors">
+                                <td class="py-6 px-2 font-bold tracking-tighter">FT-520-BLACK</td>
+                                <td class="py-6 px-2">520 GSM</td>
+                                <td class="py-6 px-2 uppercase">100% Organic Loopback</td>
+                                <td class="py-6 px-2 text-orange-500">GRADE 4.5</td>
+                                <td class="py-6 px-2 text-green-500">[AVAILABLE]</td>
+                            </tr>
+                            <tr class="hover:bg-zinc-900/50 transition-colors">
+                                <td class="py-6 px-2 font-bold tracking-tighter">CJ-300-SLATE</td>
+                                <td class="py-6 px-2">300 GSM</td>
+                                <td class="py-6 px-2 uppercase">Compact Dry-Hand Jersey</td>
+                                <td class="py-6 px-2 text-orange-500">GRADE 4.0</td>
+                                <td class="py-6 px-2 text-green-500">[AVAILABLE]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+        </section>
+
+        <!-- 04: CLIENT PORTAL -->
+        <section x-show="page === 'portal'" x-cloak x-transition.opacity.duration.500ms>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                <div class="lg:col-span-8 space-y-10">
+                    <div class="bg-zinc-900/20 border border-zinc-800 p-8 relative overflow-hidden">
+                        <div class="absolute top-4 right-6 flex items-center gap-2">
+                            <span class="radar-pulse"></span>
+                            <span class="mono text-[10px] text-orange-500 font-bold uppercase tracking-widest">Live_Audit</span>
+                        </div>
+                        <h4 class="mono text-[10px] text-zinc-500 uppercase mb-2">Order Tracking: #8821</h4>
+                        <p class="text-3xl font-bold uppercase italic tracking-tighter mb-12 underline decoration-orange-500 underline-offset-8">Utility Hoodie v1.2</p>
+                        
+                        <!-- PROGRESS TRACKER -->
+                        <div class="grid grid-cols-4 gap-2 mb-8">
+                            <div class="h-1.5 bg-zinc-600"></div>
+                            <div class="h-1.5 bg-zinc-600"></div>
+                            <div class="h-1.5 bg-orange-500 animate-pulse"></div>
+                            <div class="h-1.5 bg-zinc-900"></div>
+                        </div>
+                        <div class="grid grid-cols-4 mono text-[9px] text-zinc-600 uppercase tracking-widest">
+                            <span>Yarn_Dye</span>
+                            <span>Assembled</span>
+                            <span class="text-orange-500 font-bold italic">Milan_QC</span>
+                            <span>Dispatch</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-4 space-y-6">
+                    <div class="border-tech p-6 bg-zinc-900/30">
+                        <h4 class="mono text-[10px] text-zinc-500 uppercase mb-4 tracking-widest">Documentation</h4>
+                        <div class="space-y-3">
+                            <button class="w-full border border-zinc-800 p-3 mono text-[10px] text-left hover:border-orange-500 transition-all uppercase">>> TP_Hoodie_v1.2.pdf</button>
+                            <button class="w-full border border-zinc-800 p-3 mono text-[10px] text-left hover:border-orange-500 transition-all uppercase">>> Fabric_Test_Report.pdf</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05: CONTACT / LAB PAGE -->
+        <section x-show="page === 'contact'" x-cloak x-transition.opacity.duration.500ms>
+            <div class="max-w-2xl mx-auto space-y-12">
+                <div class="text-center">
+                    <h2 class="text-4xl font-bold italic uppercase tracking-tighter mb-4">Initialize Technical Partnership</h2>
+                    <p class="mono text-[10px] text-zinc-500 uppercase tracking-widest underline decoration-orange-500 underline-offset-8">Request Fabric Swatch Kit or Tech Review</p>
+                </div>
+                <form class="space-y-6 border-tech p-10 bg-zinc-900/10">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="mono text-[10px] text-zinc-500 uppercase">Brand Name</label>
+                            <input type="text" class="w-full bg-zinc-950 border border-zinc-800 p-3 mono text-xs focus:border-orange-500 outline-none">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="mono text-[10px] text-zinc-500 uppercase">Region (EU/UK)</label>
+                            <input type="text" class="w-full bg-zinc-950 border border-zinc-800 p-3 mono text-xs focus:border-orange-500 outline-none">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="mono text-[10px] text-zinc-500 uppercase">Technical Inquiry Details</label>
+                        <textarea rows="4" class="w-full bg-zinc-950 border border-zinc-800 p-3 mono text-xs focus:border-orange-500 outline-none"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-orange-600 text-black font-bold py-4 mono text-xs uppercase hover:bg-white transition-all tracking-widest">Transmit Inquiry Node</button>
+                </form>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- SYSTEM FOOTER -->
+    <footer class="border-t border-tech py-12 px-6 bg-black/50">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10 mono text-[10px] text-zinc-600 uppercase tracking-[0.2em]">
+            <p>© 2026 MT AHMED & SONS // SIALKOT // MILAN // BARCELONA</p>
             <div class="flex gap-8">
-                <a href="#" class="hover:text-orange-500 transition-colors">Privacy Protocol</a>
-                <a href="#" class="hover:text-orange-500 transition-colors">Technical Terms</a>
-            </div>
-            <div class="text-center md:text-right">
-                <p>System Latency: 12ms</p>
-                <p>Encrypted Node: EU-SOUTH-01</p>
+                <span>LATENCY: 14MS</span>
+                <span>ENC: SSL_256</span>
             </div>
         </div>
     </footer>
 
-    <script>
-        // REVEAL ANIMATION ON SCROLL
-        const observerOptions = { threshold: 0.1 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    </script>
 </body>
 </html>
