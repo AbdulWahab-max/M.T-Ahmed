@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MT AHMED & SONS | Technical Manufacturing System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #080808;
+            --panel: #111111;
+            --accent: #F97316;
+            --border: #1F1F1F;
+        }
+        body { background-color: var(--bg); color: #EAEAEA; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .border-tech { border: 1px solid var(--border); }
+        
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        .radar-pulse {
+            width: 8px; height: 8px; background: var(--accent); border-radius: 50%; position: relative;
+        }
+        .radar-pulse::after {
+            content: ''; position: absolute; top: -110%; left: -110%; width: 320%; height: 320%;
+            border: 1px solid var(--accent); border-radius: 50%; animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0% { transform: scale(0.5); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+
+        .grid-bg { background-image: radial-gradient(#1f1f1f 1px, transparent 1px); background-size: 40px 40px; }
+        
+        .nav-link { font-size: 10px; font-family: 'JetBrains Mono'; text-transform: uppercase; letter-spacing: 0.2em; color: #666; transition: color 0.3s; }
+        .nav-link:hover { color: var(--accent); }
+    </style>
+</head>
+<body class="grid-bg">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed top-0 w-full z-50 border-b border-tech bg-black/80 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-6">
+                <h1 class="mono font-bold text-sm tracking-tighter uppercase">MT AHMED & SONS <span class="text-orange-500">//</span> PK-ES</h1>
+                <div class="hidden lg:flex gap-8 ml-12">
+                    <a href="#substrate" class="nav-link">Substrate Index</a>
+                    <a href="#liaison" class="nav-link">Liaison Bridge</a>
+                    <a href="#components" class="nav-link">Components</a>
+                    <a href="#portal" class="nav-link text-orange-500 font-bold">Client Portal</a>
+                </div>
+            </div>
+            <button class="mono text-[10px] bg-orange-600 text-black font-bold px-6 py-3 uppercase hover:bg-white transition-all">Initiate Protocol</button>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6">
+        
+        <!-- HERO SECTION -->
+        <section class="min-h-screen flex flex-col justify-center pt-20">
+            <div class="reveal">
+                <span class="mono text-orange-500 text-xs tracking-[0.5em] uppercase mb-4 block">Systemic Apparel Manufacturing</span>
+                <h2 class="text-6xl md:text-8xl font-bold tracking-tighter uppercase leading-[0.9] mb-8">
+                    Production <br><span class="text-zinc-700 italic">as a</span> Service.
+                </h2>
+                <p class="max-w-xl text-zinc-400 text-lg leading-relaxed mb-10">
+                    Sialkot-based heavy-wear engineering overseen by our European technical office. We solve the trust gap for independent brands through 50-unit MOQs and real-time QC auditing.
+                </p>
+                <div class="flex gap-4">
+                    <div class="border-tech p-6 bg-zinc-900/50 backdrop-blur">
+                        <p class="mono text-[10px] text-zinc-500 uppercase mb-2">Office A</p>
+                        <p class="mono text-sm font-bold tracking-tight">SIALKOT, PK</p>
+                    </div>
+                    <div class="border-tech p-6 bg-zinc-900/50 backdrop-blur border-orange-900/50">
+                        <p class="mono text-[10px] text-orange-500 uppercase mb-2">Liaison Hub</p>
+                        <p class="mono text-sm font-bold tracking-tight">BARCELONA, ES</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE SUBSTRATE INDEX (FABRIC LIBRARY) -->
+        <section id="substrate" class="py-32 border-t border-tech">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-4 reveal">
+                    <h3 class="mono text-xs text-orange-500 font-bold uppercase tracking-widest mb-6">01. Substrate Index</h3>
+                    <p class="text-2xl font-bold mb-4">Material First Engineering.</p>
+                    <p class="text-zinc-500 text-sm leading-relaxed">Our library consists of high-density cotton variations optimized for Gorpcore-lite silhouettes. All substrates are pre-tested for shrinkage and pilling.</p>
+                </div>
+                <div class="lg:col-span-8 reveal">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-zinc-800 border border-zinc-800">
+                        <!-- Fabric Item -->
+                        <div class="bg-black p-8 hover:bg-zinc-900 transition-colors">
+                            <div class="flex justify-between items-start mb-12">
+                                <span class="mono text-[10px] bg-zinc-800 px-2 py-1 uppercase">Ref. FT-520</span>
+                                <span class="text-zinc-600 mono text-[10px]">v4.0</span>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2 uppercase">Heavy Loopback</h4>
+                            <p class="mono text-[10px] text-zinc-500 mb-6">520 GSM // 100% Organic Cotton</p>
+                            <div class="h-1 w-full bg-zinc-900 mb-2">
+                                <div class="h-full bg-orange-500 w-[98%]"></div>
+                            </div>
+                            <p class="mono text-[9px] uppercase text-zinc-600 tracking-tighter">Durability Rating: 9.8/10</p>
+                        </div>
+                        <!-- Fabric Item -->
+                        <div class="bg-black p-8 hover:bg-zinc-900 transition-colors">
+                            <div class="flex justify-between items-start mb-12">
+                                <span class="mono text-[10px] bg-zinc-800 px-2 py-1 uppercase">Ref. CJ-300</span>
+                                <span class="text-zinc-600 mono text-[10px]">v2.1</span>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2 uppercase">Compact Jersey</h4>
+                            <p class="mono text-[10px] text-zinc-500 mb-6">300 GSM // Dry-Hand Finish</p>
+                            <div class="h-1 w-full bg-zinc-900 mb-2">
+                                <div class="h-full bg-zinc-500 w-[92%]"></div>
+                            </div>
+                            <p class="mono text-[9px] uppercase text-zinc-600 tracking-tighter">Durability Rating: 9.2/10</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE LIAISON BRIDGE -->
+        <section id="liaison" class="py-32 border-t border-tech">
+            <div class="reveal mb-16">
+                <h3 class="mono text-xs text-orange-500 font-bold uppercase tracking-widest mb-6">02. Liaison Bridge</h3>
+                <p class="text-4xl font-bold uppercase italic tracking-tighter">Global Accountability Model</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal">
+                <div class="p-10 border-tech bg-zinc-900/20">
+                    <span class="mono text-4xl text-zinc-800 font-bold mb-8 block">01</span>
+                    <h4 class="text-lg font-bold mb-4 uppercase">Tech-Pack Review</h4>
+                    <p class="text-sm text-zinc-500 leading-relaxed mono uppercase">Location: Barcelona</p>
+                    <p class="text-sm text-zinc-400 mt-4 leading-relaxed italic">The Spain office aligns your design with Sialkot’s technical capabilities, ensuring zero data loss during prototyping.</p>
+                </div>
+                <div class="p-10 border-tech bg-zinc-900/20">
+                    <span class="mono text-4xl text-zinc-800 font-bold mb-8 block">02</span>
+                    <h4 class="text-lg font-bold mb-4 uppercase">Bulk Engineering</h4>
+                    <p class="text-sm text-zinc-500 leading-relaxed mono uppercase">Location: Sialkot</p>
+                    <p class="text-sm text-zinc-400 mt-4 leading-relaxed italic">Mass production using high-density knitting machines and specialized heavy-wear stitch protocols (ISO 4915).</p>
+                </div>
+                <div class="p-10 border-tech bg-orange-900/10 border-orange-500/20">
+                    <span class="mono text-4xl text-orange-900/40 font-bold mb-8 block">03</span>
+                    <h4 class="text-lg font-bold mb-4 uppercase text-orange-500">Final Gatekeeping</h4>
+                    <p class="text-sm text-orange-500/50 leading-relaxed mono uppercase">Location: Barcelona</p>
+                    <p class="text-sm text-zinc-400 mt-4 leading-relaxed italic">Goods are received in Spain for 100% final inspection before being dispatched to your EU warehouse.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CLIENT PORTAL PREVIEW -->
+        <section id="portal" class="py-32 border-t border-tech">
+            <div class="bg-zinc-950 border border-orange-900/30 p-12 reveal overflow-hidden relative">
+                <div class="absolute top-0 right-0 p-8">
+                    <div class="radar-pulse"></div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <div>
+                        <h3 class="mono text-xs text-orange-500 font-bold uppercase tracking-widest mb-8">03. Client Ledger</h3>
+                        <p class="text-3xl font-bold mb-6 italic uppercase tracking-tighter leading-none">Real-time <br> Batch Transparency.</p>
+                        <p class="text-zinc-500 text-sm mb-8">Every brand partner receives access to a private Production Ledger. Track your batch from yarn-dyeing in Sialkot to final QC sign-off in Spain.</p>
+                        <button class="mono text-[10px] border border-zinc-700 px-8 py-4 hover:bg-white hover:text-black transition-all">Request Access Credentials</button>
+                    </div>
+                    <div class="bg-black border border-tech p-8 space-y-8">
+                        <div class="flex justify-between items-center border-b border-zinc-800 pb-4">
+                            <p class="mono text-[10px] text-zinc-500">BATCH_ID: #MTA-8821</p>
+                            <p class="mono text-[10px] text-orange-500">STATUS: AUDIT_ES</p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center text-[11px] mono">
+                                <span>KNITTING_SIALKOT</span>
+                                <span class="text-green-500 underline uppercase">Completed</span>
+                            </div>
+                            <div class="flex justify-between items-center text-[11px] mono">
+                                <span>STITCHING_SIALKOT</span>
+                                <span class="text-green-500 underline uppercase">Completed</span>
+                            </div>
+                            <div class="flex justify-between items-center text-[11px] mono">
+                                <span class="text-orange-500 font-bold tracking-widest">QC_BARCELONA</span>
+                                <span class="text-orange-500 animate-pulse uppercase">Active_Audit</span>
+                            </div>
+                        </div>
+                        <div class="pt-8">
+                            <div class="h-1 w-full bg-zinc-900 overflow-hidden">
+                                <div class="h-full bg-orange-600 w-[75%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-20 border-t border-tech mt-20">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-12 text-zinc-600 mono text-[10px] uppercase tracking-widest">
+            <div class="text-center md:text-left">
+                <p class="text-zinc-400 font-bold mb-2">MT Ahmed & Sons Systems v1.0</p>
+                <p>PK Office: Small Industries Estate, Sialkot</p>
+                <p>ES Office: Carrer de la Diputació, Barcelona</p>
+            </div>
+            <div class="flex gap-8">
+                <a href="#" class="hover:text-orange-500 transition-colors">Privacy Protocol</a>
+                <a href="#" class="hover:text-orange-500 transition-colors">Technical Terms</a>
+            </div>
+            <div class="text-center md:text-right">
+                <p>System Latency: 12ms</p>
+                <p>Encrypted Node: EU-SOUTH-01</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // REVEAL ANIMATION ON SCROLL
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
